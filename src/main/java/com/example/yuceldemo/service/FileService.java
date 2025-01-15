@@ -1,6 +1,5 @@
 package com.example.yuceldemo.service;
 
-import com.example.yuceldemo.error.FileProcessingError;
 import com.example.yuceldemo.model.DataEntity;
 import com.example.yuceldemo.repository.DataRepository;
 import com.opencsv.bean.CsvToBean;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -27,7 +27,7 @@ public class FileService {
     }
 
     @Transactional
-    public void processCsvFile(InputStream fileStream) {
+    public void processCsvFile(InputStream fileStream) throws IOException {
         try (Reader reader = new InputStreamReader(fileStream)) {
             CsvToBean<DataEntity> csvToBean = new CsvToBeanBuilder<DataEntity>(reader)
                     .withType(DataEntity.class)
@@ -39,7 +39,7 @@ public class FileService {
 
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            throw new FileProcessingError(e);
+            throw e;
         }
     }
 }

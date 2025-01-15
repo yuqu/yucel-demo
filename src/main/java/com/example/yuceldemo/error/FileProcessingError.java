@@ -7,4 +7,8 @@ public class FileProcessingError extends ResponseStatusException {
     public FileProcessingError(Exception originalError) {
         super(HttpStatus.BAD_REQUEST, originalError.getMessage());
     }
+
+    public FileProcessingError(String message) {
+        super(HttpStatus.BAD_REQUEST, message);
+    }
 }
