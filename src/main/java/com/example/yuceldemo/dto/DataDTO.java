@@ -2,7 +2,7 @@ package com.example.yuceldemo.dto;
 
 import java.time.LocalDateTime;
 
-public record DataResponseDTO(
+public record DataDTO(
         String source,
         String codeListCode,
         String code,
