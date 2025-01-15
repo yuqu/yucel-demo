@@ -1,5 +1,6 @@
 package com.example.yuceldemo.service;
 
+import com.example.yuceldemo.helper.DataVerifier;
 import com.example.yuceldemo.model.DataEntity;
 import com.example.yuceldemo.repository.DataRepository;
 import com.opencsv.bean.CsvToBean;
@@ -32,6 +33,7 @@ public class FileService {
             CsvToBean<DataEntity> csvToBean = new CsvToBeanBuilder<DataEntity>(reader)
                     .withType(DataEntity.class)
                     .withIgnoreLeadingWhiteSpace(true)
+                    .withVerifier(new DataVerifier())
                     .withIgnoreEmptyLine(true)
                     .build();
 

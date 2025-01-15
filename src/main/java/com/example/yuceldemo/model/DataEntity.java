@@ -4,6 +4,7 @@ import com.example.yuceldemo.helper.LocalDateConverter;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
@@ -13,12 +14,15 @@ public class DataEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank
     @CsvBindByName
     String source;
 
+    @NotBlank
     @CsvBindByName
     String codeListCode;
 
+    @NotBlank
     @Column(unique = true)
     @CsvBindByName
     String code;
