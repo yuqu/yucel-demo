@@ -1,9 +1,11 @@
 package com.example.yuceldemo.model;
 
+import com.example.yuceldemo.helper.LocalDateConverter;
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvCustomBindByName;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-import java.util.Objects;
+import java.time.LocalDate;
 
 @Entity
 public class DataEntity {
@@ -11,22 +13,30 @@ public class DataEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @CsvBindByName
     String source;
 
+    @CsvBindByName
     String codeListCode;
 
     @Column(unique = true)
+    @CsvBindByName
     String code;
 
+    @CsvBindByName
     String displayValue;
 
     @Column(length = 2048)
+    @CsvBindByName
     String longDescription;
 
-    LocalDateTime fromDate;
+    @CsvCustomBindByName(column = "fromDate", converter = LocalDateConverter.class)
+    LocalDate fromDate;
 
-    LocalDateTime toDate;
+    @CsvCustomBindByName(column = "toDate", converter = LocalDateConverter.class)
+    LocalDate toDate;
 
+    @CsvBindByName
     Integer sortingPriority;
 
     public Long getId() {
@@ -77,19 +87,19 @@ public class DataEntity {
         this.longDescription = longDescription;
     }
 
-    public LocalDateTime getFromDate() {
+    public LocalDate getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(LocalDateTime fromDate) {
+    public void setFromDate(LocalDate fromDate) {
         this.fromDate = fromDate;
     }
 
-    public LocalDateTime getToDate() {
+    public LocalDate getToDate() {
         return toDate;
     }
 
-    public void setToDate(LocalDateTime toDate) {
+    public void setToDate(LocalDate toDate) {
         this.toDate = toDate;
     }
 

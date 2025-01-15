@@ -1,6 +1,9 @@
 package com.example.yuceldemo.dto;
 
-import java.time.LocalDateTime;
+import com.example.yuceldemo.helper.LocalDateConverter;
+import com.opencsv.bean.CsvCustomBindByName;
+
+import java.time.LocalDate;
 
 public record DataDTO(
         String source,
@@ -8,8 +11,8 @@ public record DataDTO(
         String code,
         String displayValue,
         String longDescription,
-        LocalDateTime fromDate,
-        LocalDateTime toDate,
+        LocalDate fromDate,
+        LocalDate toDate,
         Integer	sortingPriority
 ) {
 
